@@ -61,11 +61,22 @@
         console.log('We\'re offline...');
       }
     </script>
+        <script type="text/javascript" src="script/Fancybox/source/jquery.fancybox.js?v=2.1.5"></script>
+        <link rel="stylesheet" type="text/css" href="script/Fancybox/source/jquery.fancybox.css?v=2.1.5" media="screen"/>
+        
+        <!-- <script language="javascript">
+                    $(document).ready(function(e){
+                        $("#preview1").fancybox();
+                        $("#preview12").fancybox();
+                        $("#preview13").fancybox();
+                        $("#preview14").fancybox();
+                    });
+                </script>          -->
   </head>
   <body ng-app="app" animation="slide-left-right-ios7">
   <div>
     <ion-side-menus enable-menu-with-back-views="false" data-componentid="side-menu21">
-        <ion-side-menu-content>
+        <ion-side-menu-content drag-content="true" edge-drag-threshold="25">
             <ion-nav-bar class="bar-stable bar-royal">
                 <ion-nav-back-button></ion-nav-back-button>
                 <ion-nav-buttons side="right">
@@ -88,6 +99,7 @@
                     <ion-item id="choices-list-item18" class="  " data-componentid="list-item18" ng-click="profile()">Profile</ion-item>
                     <ion-item id="choices-list-item19" class="  " data-componentid="list-item19" ng-click="about()">About</ion-item>
                     <ion-item id="choices-list-item20" class="  " data-componentid="list-item20">Share This App</ion-item>
+                    <ion-item id="choices-list-item202" class="  " data-componentid="list-item202" ng-click="exitapp()">Exit App</ion-item>                  
                 </ion-list>
             </ion-content>
         </ion-side-menu>

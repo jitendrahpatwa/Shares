@@ -25,9 +25,13 @@
                     </p>
                 </div>
                 
-                <div style="margin: 0px; line-height: 250px; text-align: center; background-color: rgb(232, 235, 239);">
-                    <!-- <i class="icon ion-image" style="font-size: 64px; color: rgb(136, 136, 136); vertical-align: middle;"><img ng-src="http://shares.890m.com/media/{{ x.shareMediaFile }}"></i> -->
-                    <img class="icon ion-image" style="font-size: 64px; color: rgb(136, 136, 136); vertical-align: middle;width:100%" ng-src="http://shares.890m.com/media/{{ x.shareMediaFile }}">
+
+                <div ng-controller="imageCtrl" style="margin: 0px; line-height: 250px; text-align: center; background-color: rgb(232, 235, 239);">
+                    <!-- <i class="icon ion-image" style="font-size: 64px; color: rgb(136, 136, 136); vertical-align: middle;"><img ng-src="http://shares.890m.com/media/{{ x.shareMediaFile }}"></i> href="#preview" id="preview1"-->
+                    <img  class="icon ion-image" style="font-size: 64px; color: rgb(136, 136, 136); vertical-align: middle;width:100%" ng-src="{{ x.shareMediaFile }}" ng-click="showImages('{{ x.shareMediaFile }}')">
+                    <!-- <div id="preview" style="width:100%;height:90%;display: none;">
+                        <img class="icon ion-image" style="font-size: 64px; color: rgb(136, 136, 136); vertical-align: middle;width:100%" ng-src="{{ x.shareMediaFile }}">
+                    </div> -->
                 </div>
                 <div class="item item-body " id="currentlyShared-list-item-container1">
                     <ion-item class="item-icon-left  " id="currentlyShared-list-item1">

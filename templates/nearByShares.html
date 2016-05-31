@@ -27,7 +27,7 @@
                 
                 <div style="margin: 0px; line-height: 250px; text-align: center; background-color: rgb(232, 235, 239);">
                     <!-- <i class="icon ion-image" style="font-size: 64px; color: rgb(136, 136, 136); vertical-align: middle;"><img ng-src="http://shares.890m.com/media/{{ x.shareMediaFile }}"></i> -->
-                    <img class="icon ion-image" style="font-size: 64px; color: rgb(136, 136, 136); vertical-align: middle;width:100%" ng-src="http://shares.890m.com/media/{{ x.shareMediaFile }}">
+                    <img class="icon ion-image" style="font-size: 64px; color: rgb(136, 136, 136); vertical-align: middle;width:100%" ng-src="{{ x.shareMediaFile }}" ng-click="showImages($index)">
                 </div>
                 <div class="item item-body " id="currentlyShared-list-item-container1">
                     <ion-item class="item-icon-left  " id="currentlyShared-list-item1">

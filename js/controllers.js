@@ -1,7 +1,17 @@
 angular.module('app.controllers', [])
   
-.controller('welcomeCtrl',function($scope,$state,$ionicLoading){
-  setTimeout(function(){$state.go('tabsController.currentlyShared')},8000);
+.controller('welcomeCtrl',function($scope,$state,$ionicLoading,$ionicSideMenuDelegate,$ionicNavBarDelegate){
+   /*$scope.$on('$ionicView.enter', function(){
+      $ionicSideMenuDelegate.canDragContent(false);
+      console.warn('drag false');
+      document.getElementById('navbtn').style.display = "none";
+    });
+    $scope.$on('$ionicView.leave', function(){
+      $ionicSideMenuDelegate.canDragContent(true);
+      console.warn('drag true');
+      document.getElementById('navbtn').style.display = "block";
+    });*/
+    setTimeout(function(){$state.go('tabsController.currentlyShared')},8000);
   /*$scope.show = function() {
     $ionicLoading.show({
       template: 'templates/starter.html'
@@ -16,30 +26,113 @@ angular.module('app.controllers', [])
   };*/
 })
 
-.controller('choiceCtrl',function($scope,$state,$http,$ionicLoading){
+.controller('choiceCtrl',function($scope,$state,$http,$ionicLoading, $ionicHistory,$ionicSideMenuDelegate){
+  $ionicHistory.nextViewOptions({
+   historyRoot: true,
+   disableAnimate: true,
+   expire: 300
+  });
   $scope.sharecurrent = function(){
     $state.go('tabsController.currentlyShared');
+    if($ionicSideMenuDelegate.toggleRight()){
+      console.warn("closeing");
+      $ionicHistory.nextViewOptions({
+       historyRoot: true,
+       disableAnimate: true,
+       expire: 300
+      });
+    }
   };
   $scope.sharepast = function(){
     $state.go('tabsController.pastShares');
+    if($ionicSideMenuDelegate.toggleRight()){
+      console.warn("closeing");
+      $ionicHistory.nextViewOptions({
+       historyRoot: true,
+       disableAnimate: true,
+       expire: 300
+      });
+    }
   };
   $scope.sharenearby = function(){
     $state.go('tabsController.nearByShares');
+    if($ionicSideMenuDelegate.toggleRight()){
+      console.warn("closeing");
+      $ionicHistory.nextViewOptions({
+       historyRoot: true,
+       disableAnimate: true,
+       expire: 300
+      });
+    }
   };
   $scope.about = function(){
     $state.go('about');
+    if($ionicSideMenuDelegate.toggleRight()){
+      console.warn("closeing");
+      $ionicHistory.nextViewOptions({
+       historyRoot: true,
+       disableAnimate: true,
+       expire: 300
+      });
+    }
   }
   $scope.setting = function(){
     $state.go('setting');
+    if($ionicSideMenuDelegate.toggleRight()){
+      console.warn("closeing");
+      $ionicHistory.nextViewOptions({
+       historyRoot: true,
+       disableAnimate: true,
+       expire: 300
+      });
+    }
   }
   $scope.profile = function(){
     $state.go('profile');
+    if($ionicSideMenuDelegate.toggleRight()){
+      console.warn("closeing");
+      $ionicHistory.nextViewOptions({
+       historyRoot: true,
+       disableAnimate: true,
+       expire: 300
+      });
+    }
   }
   $scope.addshare = function(){
     $state.go('tabsController.addShares');
+    if($ionicSideMenuDelegate.toggleRight()){
+      console.warn("closeing");
+      $ionicHistory.nextViewOptions({
+       historyRoot: true,
+       disableAnimate: true,
+       expire: 300
+      });
+    }
   }
+  $scope.exitapp = function () {
+        $ionicHistory.nextViewOptions({
+       historyRoot: true,
+       disableAnimate: true,
+       expire: 300
+      });
+        navigator.notification.confirm(
+          'Exit Shares ?'
+        , function(button) {
+              if (button == 2) {
+                  navigator.app.exitApp();
+                  ionic.Platform.exitApp();
+              } 
+          }
+        , 'Exit'
+        , 'No,Yes'
+        );  
+  };
 })
-.controller('currentlySharedCtrl', function($scope,$http,$interval, $timeout,$state, $ionicLoading,$ionicPopover, $ionicSideMenuDelegate) {
+.controller('currentlySharedCtrl', function($scope,$http,$interval, $timeout,$state, $ionicPlatform,$ionicLoading,$ionicPopover, $ionicSideMenuDelegate) {
+  $ionicPlatform.onHardwareBackButton(function(){
+                 ionic.Platform.exitApp();
+  });
+
   $ionicLoading.show({ template: 'Loading...', duration: 1500});  
   var dd  = document.querySelector('#errmsgs');
   $scope.getCurrentShares = function(){   
@@ -119,7 +212,10 @@ angular.module('app.controllers', [])
     };  
 })*/
    
-.controller('pastSharesCtrl', function($scope,$http, $timeout,$state, $ionicLoading,$ionicPopover, $ionicSideMenuDelegate) {
+.controller('pastSharesCtrl', function($scope,$http, $timeout,$state,$ionicPlatform, $ionicLoading,$ionicPopover, $ionicSideMenuDelegate) {
+  $ionicPlatform.onHardwareBackButton(function(){
+                 ionic.Platform.exitApp();
+  });
   $ionicLoading.show({ template: 'Loading...', duration: 1500});
   var dd  = document.querySelector('#errmsgs');
   $scope.getPastShares = function(){
@@ -189,7 +285,10 @@ angular.module('app.controllers', [])
     };
 })
    
-.controller('nearBySharesCtrl', function($scope,$http, $timeout,$state, $ionicLoading,$ionicPopover, $ionicSideMenuDelegate) {
+.controller('nearBySharesCtrl', function($scope,$http, $timeout,$state,$ionicPlatform, $ionicLoading,$ionicPopover, $ionicSideMenuDelegate) {
+  $ionicPlatform.onHardwareBackButton(function(){
+                 ionic.Platform.exitApp();
+  });
   $ionicLoading.show({ template: 'Loading...', duration: 1500});  
   var dd  = document.querySelector('#errmsgs');
   $scope.getNearByShares = function(){
@@ -263,7 +362,7 @@ angular.module('app.controllers', [])
   //$scope.getshare = "";
   $ionicLoading.show({ template: 'Loading...', duration: 1500});  
   var dd  = document.querySelector('#errmsgs');
-
+  var dc = document.querySelector('#errcomment');
     $http.get("http://shares.890m.com/get/sharesifid.php?id="+$stateParams.id)
     .success(function (response) 
     {
@@ -294,6 +393,7 @@ angular.module('app.controllers', [])
       }else{
          $scope.getcomment = response;
          $ionicLoading.hide();
+         dc.style.display = "none";
       }
     })
     .error(function(error){
@@ -312,12 +412,12 @@ angular.module('app.controllers', [])
       countClickshappy++;
       if(countClickshappy%2==0){
         $http.post("http://shares.890m.com/set/likesbyidnone.php?id="+argument)
-        .success(function(){})
+        .success(function(){location.reload();})
         .error(function(){});
       }else{
         //like update
         $http.post("http://shares.890m.com/set/likesbyid.php?id="+argument)
-        .success(function(){})
+        .success(function(){location.reload();})
         .error(function(){});
       }
     };
@@ -325,11 +425,11 @@ angular.module('app.controllers', [])
       countClickssad++;
       if(countClickssad%2==0){
         $http.post("http://shares.890m.com/set/dislikebyidnone.php?id="+argument)
-        .success(function(){})
+        .success(function(){location.reload();})
         .error(function(){});
       }else{
         $http.post("http://shares.890m.com/set/dislikebyid.php?id="+argument)
-        .success(function(){})
+        .success(function(){location.reload();})
         .error(function(){});
       }
     };
@@ -360,7 +460,7 @@ angular.module('app.controllers', [])
         method:'POST',
         success:function(data){
         console.info('posted'); 
-          if(data=="success"){
+          //if(data=="success"){
               $ionicPopup.alert({
                 title: 'Done',
                 content: 'Thanks for sharing your comments!!!'
@@ -368,14 +468,14 @@ angular.module('app.controllers', [])
                 console.info('Thanks');
               });
               location.reload();
-            }else{
+            /*}else{
               $ionicPopup.alert({
                 title: 'Failed',
                 content: 'Comment could not shared due to '+data
               }).then(function(res) {
                 console.info('Thanks');
               });
-            }
+            }*/
       },
       error:function(errr){
           $ionicPopup.alert({
@@ -390,7 +490,10 @@ angular.module('app.controllers', [])
     };
 })
  
- .controller('addSharesCtrl',function($scope,$stateParams,$http, $ionicLoading,$state, $ionicPopup,$ionicPopover,$ionicSideMenuDelegate){
+ .controller('addSharesCtrl',function($scope,$stateParams,$http, $ionicLoading,$state,$ionicPlatform, $ionicPopup,$ionicPopover,$ionicSideMenuDelegate){
+  $ionicPlatform.onHardwareBackButton(function(){
+                 ionic.Platform.exitApp();
+  });
   $scope.message = {
     'title' : '',
     'desc' : '',
@@ -452,23 +555,10 @@ angular.module('app.controllers', [])
     });*/
     $ionicLoading.hide();
   };
-  /*$scope.addfinal = function(){
-    $http.post("http://shares.890m.com/set/addshare.php")
-    .success(function(){
-    $ionicPopup.alert({
-              title: 'Thanks&nbsp;<span class="ion-ios-checkmark" style="color:green"></span>',
-              content: 'For sharing your post successfully!!!'
-            }).then(function(res) {
-              console.log('Thanks');
-            });   
-    })
-    .error(function(){
-        $ionicPopup.alert({
-              title: 'error',
-              content: 'Post is not shared'
-            }).then(function(res) {
-              console.log('Try');
-            });
-    });
-  };*/
+ })
+ .controller('imageCtrl',function($scope,$stateParams,$http, $ionicLoading,$state,$ionicPlatform, $ionicPopup,$ionicPopover,$ionicSideMenuDelegate){
+  $scope.showImages = function(index) {
+    console.warn("in image function");
+    //alert("data "+index);
+  };
  })
