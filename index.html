@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+    
+    <script type="text/javascript" src="js/lib/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/lib/jquery.min.js"></script>
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+    
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    
+
+    <style type="text/css">
+      .platform-ios .manual-ios-statusbar-padding{
+        padding-top:20px;
+      }
+      .manual-remove-top-padding{
+        padding-top:0px; 
+      }
+      .manual-remove-top-padding .scroll{
+        padding-top:0px !important;
+      }
+      ion-list.manual-list-fullwidth div.list, .list.card.manual-card-fullwidth {
+        margin-left:-10px;
+        margin-right:-10px;
+      }
+      ion-list.manual-list-fullwidth div.list > .item, .list.card.manual-card-fullwidth > .item {
+        border-radius:0px;
+        border-left:0px;
+        border-right: 0px;
+      }
+    </style>
+
+    <script src="js/app.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="js/routes.js"></script>
+    <script src="js/services.js"></script>
+    <script src="js/directives.js"></script>
+
+    <!-- Only required for Tab projects w/ pages in multiple tabs 
+    <script src="lib/ionicuirouter/ionicUIRouter.js"></script>
+    -->
+    <script type="text/javascript">
+      (document.querySelector('#errmsgs')).style.display = "none";
+      if (navigator.onLine) {
+        (document.querySelector('#errmsgs')).style.display = "none";
+        console.log('We\'re online!');
+      } else {
+        (document.querySelector('#errmsgs')).style.display = "block";
+        console.log('We\'re offline...');
+      }
+    </script>
+  </head>
+  <body ng-app="app" animation="slide-left-right-ios7">
+  <div>
+    <ion-side-menus enable-menu-with-back-views="false" data-componentid="side-menu21">
+        <ion-side-menu-content>
+            <ion-nav-bar class="bar-stable bar-royal">
+                <ion-nav-back-button></ion-nav-back-button>
+                <ion-nav-buttons side="right">
+                    <button id="navbtn" class="button button-icon button-clear ion-navicon" menu-toggle="right"></button>
+                </ion-nav-buttons>
+            </ion-nav-bar>
+            <ion-nav-view></ion-nav-view>
+        </ion-side-menu-content>
+        <ion-side-menu side="right" id="side-menu21" style="background-color:#FFFFFF;">
+            <ion-header-bar class="bar-stable bar-royal">
+                <div class="title">Choices</div>
+            </ion-header-bar>
+            <ion-content padding="false" ng-controller="choiceCtrl" class="side-menu-right has-header">
+                <ion-list id="choices-list2" class=" " data-componentid="list2">
+                    <ion-item id="choices-list-item14" class="  " data-componentid="list-item14" ng-click="sharecurrent()">Shares Current</ion-item>
+                    <ion-item id="choices-list-item15" class="  " data-componentid="list-item15" ng-click="sharepast()">Shares Past</ion-item>
+                    <ion-item id="choices-list-item16" class="  " data-componentid="list-item16" ng-click="sharenearby()">Shares Near By</ion-item>
+                    <ion-item id="choices-list-item20choice" class="  " data-componentid="list-item21" ng-click="addshare()">Add Shares</ion-item>
+                    <ion-item id="choices-list-item17" class="  " data-componentid="list-item17" ng-click="setting()">Settings</ion-item>
+                    <ion-item id="choices-list-item18" class="  " data-componentid="list-item18" ng-click="profile()">Profile</ion-item>
+                    <ion-item id="choices-list-item19" class="  " data-componentid="list-item19" ng-click="about()">About</ion-item>
+                    <ion-item id="choices-list-item20" class="  " data-componentid="list-item20">Share This App</ion-item>
+                </ion-list>
+            </ion-content>
+        </ion-side-menu>
+    </ion-side-menus>
+</div>
+  </body>
+</html>

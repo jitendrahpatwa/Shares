@@ -1,0 +1,74 @@
+<ion-view title="Shared Post" id="page5" class=" ">
+    <ion-content padding="true" class="has-header">
+    <div ng-repeat="x in getshare">
+        <div id="errmsgs">
+        <div ng-if="errmsg">
+            <center>
+            <hr>
+            <img src="img/nocon.png" style="width:100%">
+            <h5>Server Says</h5>
+            <p>Could not load shares data.<br>You not connected to Internet.<br>Check your connectivity or server not have data.</p>
+            <hr>
+            </center>
+        </div>
+        </div>
+        <center><h3 id="sharedPost-heading4" style="color:#000000;" class=" ">{{ x.shareTitle }}</h3></center>
+        <div class="list card " id="sharedPost-card24">
+            <div class="item item-body " id="sharedPost-list-item-container5">
+                <p id="sharedPost-markdown9" style="margin-top:0px;color:#000000;" class=" ">{{x.shareDesc}}
+                </p>
+            </div>
+            <div style="margin: 0px; line-height: 250px; text-align: center; background-color: rgb(232, 235, 239);">
+                <img class="icon ion-image" style="font-size: 64px; color: rgb(136, 136, 136); vertical-align: middle;width:100%" ng-src="http://shares.890m.com/media/{{ x.shareMediaFile }}">
+            </div>
+            <ion-item class="item-icon-left  " id="sharedPost-list-item8">
+                <i class="icon ion-ios-person"></i>Shared By {{x.userName}}</ion-item>
+            <!-- <p id="sharedPost-markdown6" style="color:#000000;" class=" ">All Detail</p> -->
+            <p id="sharedPost-markdown7" style="color:#A05F5F;text-align:center;margin-top:4%" class=" ">Like {{x.likes}}&nbsp;Dislike {{x.dislikes}}&nbsp;Comments {{x.comments}}&nbsp;Shares {{x.shares}}&nbsp;</p>
+            <div id="sharedPost-button-bar7" class=" button-bar ">
+                <div class="col col-33">
+                <button id="sharedPost-button23" style="border-radius:90px 90px 90px 90px;" class=" button button-balanced  button-block icon ion-happy-outline " ng-click="callhappy('{{x.id}}')"></button>
+                </div>
+                <div class="col col-33">
+                <button id="sharedPost-button24" style="border-radius:90px 90px 90px 90px;" class=" button button-assertive  button-block icon ion-sad-outline " ng-click="callsad('{{x.id}}')"></button>
+                </div>
+                <div class="col col-33">
+                <button id="sharedPost-button26" style="border-radius:90px 90px 90px 90px;" class=" button button-stable  button-block icon ion-android-share-alt "></button>
+                </div>
+            </div>
+            <form id="sharedPost-form1" class="list "  name="faleComigoForm1"  accept-charset="UTF-8" ng-submit="addCommentFinall('{{x.id}}','{{x.userName}}','{{x.userEmail}}','{{x.commentsGroup}}')">
+                <div class="spacer" style="width: 283px; height: 0px;"></div>
+                <p id="sharedPost-markdown8" style="color:#000000;text-align:center;" class=" ">{{x.userName}}, Say about above post</p>
+                <label class="item item-input " id="sharedPost-input1">
+                    <span class="input-label">Comments<!-- <button id="sharedPost-button27" type="submit" style="width:100%" ng-click="addcomment()" class=" button button-positive  button-block ">Say!</ novalidate form-managerbutton>'{{x.id}}','{{x.userName}}','{{x.userEmail}}'ng-model="txtcomment.comments" --></span>
+                    <input type="text" name="id" value="{{x.id}}" style="display:none;">
+                    <input type="text" name="userName" value="{{x.userName}}" style="display:none;">
+                    <input type="text" name="userEmail" value="{{x.userEmail}}" style="display:none;">
+                    <input type="text" name="commentGroup" value="{{x.commentsGroup}}" style="display:none;">
+                    <textarea type="text" name="comments" required="" size="100" placeholder="here..." rows="1"></textarea>
+                </label>
+                <button id="sharedPost-button27" type="submit" style="width:100%" class=" button button-positive  button-block ">Submit!</button>
+            </form>
+            <div class="list card " id="sharedPost-card25">
+                <div ng-if="errcomment">
+                    <center><i>No Comments yet has been updated.</i></center>
+                </div>
+                <div ng-repeat="yc in getcomment">
+                    <ion-item class="item-icon-left  " id="sharedPost-list-item10">
+                        <i class="icon ion-ios-person"></i>
+                        <h2>{{yc.userName}} says,<p>{{yc.comment}}</p></h2><small>{{yc.day}},{{yc.date}} {{yc.month}},{{yc.time}}</small>
+                    </ion-item>
+                    <!-- <ion-item class="item-icon-left  " id="sharedPost-list-item12">
+                        <i class="icon ion-ios-person"></i>
+                        <h2>Person2 says,,,</h2><small>Monday,26 May,03:20pm</small>
+                    </ion-item>
+                    <ion-item class="item-icon-left  " id="sharedPost-list-item13">
+                        <i class="icon ion-ios-person"></i>
+                        <h2>Person3 says,,,</h2><small>Monday,26 May,01:20pm</small>
+                    </ion-item> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    </ion-content>
+</ion-view>

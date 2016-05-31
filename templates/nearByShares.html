@@ -1,0 +1,59 @@
+<ion-view title="Near By Shares" id="page4" class=" ">
+    <ion-content padding="true" class="has-header">
+        <ion-refresher
+            pulling-text="Loading more shares..."
+            on-refresh="doRefresh()">
+        </ion-refresher>
+        <h1 id="currentlyShared-heading1" style="color:#000000;" class=" ">Shared By Close One</h1>
+        <div id="errmsgs">
+        <div ng-if="errmsg">
+            <center>
+            <hr>
+            <img src="img/nocon.png" style="width:100%">
+            <h5>Server Says</h5>
+            <p>Could not load shares data.<br>You not connected to Internet.<br>Check your connectivity or server not have data.</p>
+            <hr>
+            </center>
+        </div>
+        </div>
+        <div ng-repeat="x in getshare">
+            <div class="list card " id="currentlyShared-card21">
+                <div class="item item-body " id="currentlyShared-list-item-container1">
+                    <p id="currentlyShared-markdown12" style="margin-top:0px;color:#000000;" class=" ">{{ x.shareTitle }}
+                        <strong><a ng-click="callview('{{x.id}}')" style="cursor:pointer">more</a>...</strong>
+
+                    </p>
+                </div>
+                
+                <div style="margin: 0px; line-height: 250px; text-align: center; background-color: rgb(232, 235, 239);">
+                    <!-- <i class="icon ion-image" style="font-size: 64px; color: rgb(136, 136, 136); vertical-align: middle;"><img ng-src="http://shares.890m.com/media/{{ x.shareMediaFile }}"></i> -->
+                    <img class="icon ion-image" style="font-size: 64px; color: rgb(136, 136, 136); vertical-align: middle;width:100%" ng-src="http://shares.890m.com/media/{{ x.shareMediaFile }}">
+                </div>
+                <div class="item item-body " id="currentlyShared-list-item-container1">
+                    <ion-item class="item-icon-left  " id="currentlyShared-list-item1">
+                        <i class="icon ion-ios-person"></i>{{ x.userName }}
+                        <div style="float:right"><small>{{ x.day }}, {{ x.date }} {{ x.month }}, {{ x.time }}</small></div>
+                    </ion-item>
+
+                    <p id="currentlyShared-markdown3" style="color:#945151;text-align:center;" class=" ">Like {{ x.likes }}&nbsp;Dislike {{ x.dislikes }}&nbsp;Comments {{ x.comments }}&nbsp;Shares {{ x.shares }}&nbsp;</p>
+                </div>
+                <div class="item item-body " id="currentlyShared-list-item-container2">
+                    <div id="currentlyShared-button-bar3" class=" button-bar ">
+                        <div class="col col-25">
+                        <button id="currentlyShared-button7" style="color:#FFFFFF;border-radius:60px 60px 60px 60px;" class=" button button-balanced  button-block icon ion-happy-outline " ng-click="callhappy('{{x.id}}')"></button>
+                        </div>
+                        <div class="col col-25">
+                        <button id="currentlyShared-button8" style="border-radius:90px 90px 90px 90px;" class=" button button-assertive  button-block icon ion-sad-outline " ng-click="callsad('{{x.id}}')"></button>
+                        </div>
+                        <div class="col col-25">
+                        <button id="currentlyShared-button9" style="border-radius:90px 90px 90px 90px;" class=" button button-royal  button-block icon ion-android-textsms " ng-click="callview('{{x.id}}')"></button>
+                        </div>
+                        <div class="col col-25">
+                        <button id="currentlyShared-button10" style="border-radius:90px 90px 90px 90px;" class=" button button-stable  button-block icon ion-android-share-alt "></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

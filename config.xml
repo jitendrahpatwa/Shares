@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<widget id="com.ionicframework.shares978522" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+  <name>shares</name>
+  <description>
+        An project for public community named as Shares build with Ionic Framework and Cordova.
+    </description>
+  <author email="jitendrapatwa135@gmail.com" href="http://example.com.com/">
+      Your Name Here
+    </author>
+  <content src="index.html"/>
+  <access origin="*"/>
+  <allow-navigation href="*" />
+  <preference name="webviewbounce" value="false"/>
+  <preference name="UIWebViewBounce" value="false"/>
+  <preference name="DisallowOverscroll" value="true"/>
+  <preference name="SplashScreenDelay" value="2000"/>
+  <preference name="FadeSplashScreenDuration" value="2000"/>
+  <preference name="android-minSdkVersion" value="16"/>
+  <preference name="BackupWebStorage" value="none"/>
+  <preference name="KeepRunning" value="false"/>
+  <plugin name="cordova-plugin-whitelist" spec="1" />
+  <allow-navigation href="http://*/*" />
+  <allow-navigation href="https://*/*" />
+  <allow-navigation href="data:*" />
+  <access origin="content:///*" />
+  <allow-intent href="http://*/*" />
+  <allow-intent href="https://*/*" />
+  <allow-intent href="tel:*" />
+  <allow-intent href="sms:*" />
+  <allow-intent href="mailto:*" />
+  <allow-intent href="geo:*" />
+  <platform name="android">
+      <allow-intent href="market:*" />
+  </platform>
+<preference name="LoadUrlTimeoutValue" value="10000"/>
+<preference name="InAppBrowserStorageEnabled" value="true"/>
+<preference name="LoadingDialog" value="My Title,My Message"/>
+<preference name="ErrorUrl" value="myErrorPage.html"/>
+<preference name="LogLevel" value="VERBOSE"/>
+<preference name="AndroidLaunchMode" value="singleTop"/>
+<preference name="DefaultVolumeStream" value="call" />
+<preference name="OverrideUserAgent" value="Mozilla/5.0 My Browser" />
+<preference name="AppendUserAgent" value="My Browser" />
+  <feature name="StatusBar">
+    <param name="ios-package" value="CDVStatusBar" onload="true"/>
+  </feature>
+</widget>
